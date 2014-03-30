@@ -3,11 +3,11 @@
 
 COMPILER = g++			# compiler specific to file extension, g++ only invoked on .cpp
 PROGNAME = bombermanc
-CFLAGS = -g -Wall -std=c++11	# gnu99 in for declarations, c++11 for non static data member initialiazer
+CFLAGS = -g -Wall -O2 -pthread -std=c++11	# gnu99 in for declarations, c++11 for non static data member initialiazer
 #LIBS = -lmyLib 
-LIBS =  
+LIBS = -L/apr/apr-1		# require -L for spec directory, otherwise -l 
 SRC = client.cpp
-OBJ = client.o 
+OBJ = #client.o 
 
 # Explicit rules: Which files depend on the compile of other files
 #myProgram : main.c
@@ -15,7 +15,7 @@ OBJ = client.o
 
 # Explicit rules: Which files depend on the compile of other files
 $(PROGNAME) : $(OBJ)
-	$(COMPILER) $(CFLAGS) -o $(PROGNAME) $(OBJ) $(LIBS) 
+	$(COMPILER) $(CFLAGS) $(SRC) $(LIBS) $(OBJ) -o $(PROGNAME)
 
 
 # Implicit rules: like explicit, but no commands, suffex tells what commandtodo

@@ -29,8 +29,8 @@ char tiles[]="|-0* &";
 class gameBoard
 {
 private:
-	int boardWidth = 100, boardHeight = 100;
-	char **tiles = NULL;
+	int boardWidth, boardHeight;
+	char **tiles;
 public:
 	gameBoard(int width = 100, int height = 100)
 	{
