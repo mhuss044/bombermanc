@@ -5,16 +5,17 @@ COMPILER = g++			# compiler specific to file extension, g++ only invoked on .cpp
 PROGNAME = bombermanc
 CFLAGS = -g -Wall -O2 -pthread -std=c++11	# gnu99 in for declarations, c++11 for non static data member initialiazer
 #LIBS = -lmyLib 
-LIBS = -L/apr/apr-1		# require -L for spec directory, otherwise -l 
-SRC = client.cpp
+LIBS = -L/usr/local/lib/apr -lapr-1		# require -L for spec directory, otherwise -l 
+SRC =  client.cpp
 OBJ = #client.o 
 
+#-I/usr/local/include/apr
 # Explicit rules: Which files depend on the compile of other files
 #myProgram : main.c
 #g++ -o myProgram main.c	# command here, tab char before each command
 
-# Explicit rules: Which files depend on the compile of other files
-$(PROGNAME) : $(OBJ)
+# Explicit rules: Which files depend on the compile of other files #$(OBJ)
+$(PROGNAME) : $(SRC) 
 	$(COMPILER) $(CFLAGS) $(SRC) $(LIBS) $(OBJ) -o $(PROGNAME)
 
 
