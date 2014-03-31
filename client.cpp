@@ -42,7 +42,7 @@ void obs(void);
 void onlyUp(void);
 void rnGesus(void);
 
-void (*(logicPath[2]))(void);
+void (*(logicPath[6]))(int);
 void (*logic)(void);
 
 int curLogic = 0;
@@ -89,14 +89,17 @@ int main(void)
 	// Send/recv;
 	cout << "Playing.." << endl;
 //	(*logic)();		
-	logicPath[0] = &rnGesus;
-	logicPath[1] = &onlyUp;
+	logicPath[0] = &rnGi;
+	logicPath[1] = &onlyUpi;
+	logicPath[2] = &onlyDowni;
+	logicPath[3] = &onlyRighti;
+	logicPath[4] = &onlyRighti;
+	logicPath[5] = &onlyRighti;
 	//(*(logicPath+curLogic))();
 	while(1)
 	{
-	
-	rnGi(1);
-	obs();
+		(*(logicPath[rand()%5]))(rand()%5+1);	
+		obs();
 	}
 
 // take step, rand dir
@@ -142,10 +145,13 @@ void obs(void)
 			ctr++;
 			playerData.name[1] = buf[ctr];
 			playerData.name[2] = '\0';
+
+			cout << "My name is " << playerData.name << endl;
 			break;
 		}
 		ctr++;
 	}
+	
 
 	// Get X;
 	while(ctr < strlen(buf))
@@ -167,12 +173,12 @@ void obs(void)
 				else
 					break;
 			}
+			cout << "Found an X to be: " << x << endl;
 			break;
 		}
 		ctr++;
 	}
 
-	cout << "Found an X to be: " << x << endl;
 
 	// Get Y;
 	while(ctr < strlen(buf))
@@ -194,12 +200,12 @@ void obs(void)
 				else
 					break;
 			}
+			cout << "Found an Y to be: " << y << endl;
 			break;
 		}
 		ctr++;
 	}
 
-	cout << "Found an Y to be: " << y << endl;
 
 	if(x != -1 && y != -1)
 	{
